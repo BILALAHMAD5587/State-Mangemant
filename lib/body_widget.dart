@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_mangemant/counter_provider.dart';
 
 
-late _BodyWidgetState bodyWidgetstate;
 
 
 
@@ -10,15 +11,11 @@ class BodyWidget extends StatefulWidget {
 
   @override
   State<BodyWidget> createState()  {
-    bodyWidgetstate = _BodyWidgetState();
-    return bodyWidgetstate;
+    return _BodyWidgetState();
   }
 }
 
 class _BodyWidgetState extends State<BodyWidget> {
-
-  var counter = 0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +27,7 @@ class _BodyWidgetState extends State<BodyWidget> {
             'You have pushed the button this many times:',
           ),
           Text(
-            '$counter',
+            '${Provider.of<CounterProvider>(context).countValue}',
             style: Theme.of(context).textTheme.headline4,
           ),
         ],
