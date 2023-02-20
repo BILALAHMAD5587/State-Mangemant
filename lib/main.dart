@@ -40,7 +40,6 @@ class MyHomePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             //set value
-            Provider.of<CounterProvider>(ctx, listen: false).countValue = 1;
             ctx.read<CounterProvider>().countValue = 1;
             ctx.read<CounterProvider>().addlistData(value: {
               'name': 'Bilal',
