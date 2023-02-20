@@ -17,5 +17,18 @@ void incrementCounter(){
    notifyListeners();
 }
 
+List<Map<String, dynamic>> arrData = [];
+
+
+ List<Map<String, dynamic>> get listData => arrData;
+
+ void addlistData({required Map<String, dynamic> value}){
+   arrData.add(value);
+   notifyListeners();
+
+ }
+
+
+
 
 }

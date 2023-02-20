@@ -6,32 +6,62 @@ import 'package:state_mangemant/counter_provider.dart';
 
 
 
-class BodyWidget extends StatefulWidget {
-  const BodyWidget({Key? key}) : super(key: key);
-
-  @override
-  State<BodyWidget> createState()  {
-    return _BodyWidgetState();
-  }
-}
-
-class _BodyWidgetState extends State<BodyWidget> {
+class BodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Build BodyWidgetState');
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text(
             'You have pushed the button this many times:',
-          ),
-          Text(
-            '${Provider.of<CounterProvider>(context).countValue}',
-            style: Theme.of(context).textTheme.headline4,
-          ),
+          ), 
+          Expanded(
+            child: Consumer<CounterProvider>( builder: (ctx, provider, child) {
+                print('Build Consumer');
+                return  Column(
+                  children: [
+                    Text(
+                      '${provider.countValue}',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                        itemCount: provider.listData.length,
+                        itemBuilder: (_,index){
+                      return Expanded(
+                        child: ListTile(
+                          title: Text('${provider.listData[index]['name']}'),
+                          subtitle: Text('${provider.listData[index]['class']}'),
+                        ),
+                      );
+                    })
+                  ],
+                );
+              }
+
+
+            ),
+          )
+
         ],
       ),
     );
   }
 }
+
+
+/*class MyTextWidget extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    print('Build MyTextWidget');
+    return  Text(
+      '${Provider.of<CounterProvider>(context).countValue}',
+      style: Theme.of(context).textTheme.headline4,
+    );
+  }
+
+}*/
+

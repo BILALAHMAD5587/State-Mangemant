@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:state_mangemant/body_widget.dart';
@@ -25,26 +27,25 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    print('Build My Home Page');
+
     return ChangeNotifierProvider(
       create: (_)=> CounterProvider(),
       builder: (ctx, _) =>  Scaffold(
         appBar: AppBar(
           title: Text('State Mangement'),
         ),
-        body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BodyWidget(),
-                ElevatedButton(onPressed: (){
-                  //set value
-                  Provider.of<CounterProvider>(ctx, listen: false).countValue = 1;
-                }, child: Text('Increment'))
-              ],
-            ),
+        body: BodyWidget(),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             //set value
             Provider.of<CounterProvider>(ctx, listen: false).countValue = 1;
+            ctx.read<CounterProvider>().countValue = 1;
+            ctx.read<CounterProvider>().addlistData(value: {
+              'name': 'Bilal',
+              'class': 'x'
+            });
           },
           tooltip: 'Increment',
           child: const Icon(Icons.add),
@@ -53,3 +54,6 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+
+
