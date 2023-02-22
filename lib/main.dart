@@ -37,18 +37,36 @@ class MyHomePage extends StatelessWidget {
           title: Text('State Mangement'),
         ),
         body: BodyWidget(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            //set value
-            ctx.read<CounterProvider>().countValue = 1;
-            ctx.read<CounterProvider>().addlistData(value: {
-              'name': 'Bilal',
-              'class': 'x'
-            });
-          },
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ), //
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: (){
+                //set value
+                ctx.read<CounterProvider>().countValue = 1;
+                ctx.read<CounterProvider>().addlistData(value: {
+                  'name': 'Bilal',
+                  'class': 'x'
+                });
+              },
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
+            FloatingActionButton(
+              onPressed: (){
+                //set value
+                Provider.of<CounterProvider>(ctx, listen: false).decrementCounter();
+
+                
+
+
+              },
+              tooltip: 'Decrement',
+              child: const Icon(Icons.remove),
+            )
+          ],
+        ),
+        //
       ),
     );
   }

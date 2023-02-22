@@ -17,6 +17,12 @@ void incrementCounter(){
    notifyListeners();
 }
 
+void decrementCounter(){
+   count--;
+   notifyListeners();
+}
+
+
 List<Map<String, dynamic>> arrData = [];
 
 
@@ -27,7 +33,10 @@ List<Map<String, dynamic>> arrData = [];
    notifyListeners();
 
  }
-
+void removeData({required int index}){
+   arrData.removeAt(index);
+   notifyListeners();
+}
 
 
 

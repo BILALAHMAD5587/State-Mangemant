@@ -35,6 +35,12 @@ class BodyWidget extends StatelessWidget {
                         child: ListTile(
                           title: Text('${provider.listData[index]['name']}'),
                           subtitle: Text('${provider.listData[index]['class']}'),
+                          trailing: InkWell(
+                              onTap: (){
+                                provider.removeData(index: index);
+                                provider.decrementCounter();
+                              },
+                              child: Icon(Icons.delete)),
                         ),
                       );
                     })
